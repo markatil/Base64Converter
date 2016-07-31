@@ -14,6 +14,8 @@ namespace ConvertBase64ToFile
 {
     public partial class MainForm : Form
     {
+        private string Content { get; set; }
+
         public MainForm()
         {
             InitializeComponent();
@@ -54,8 +56,15 @@ namespace ConvertBase64ToFile
 
         private string GetLongestMatchingString(string xmlString)
         {
+            if (string.IsNullOrWhiteSpace(xmlString))
+            {
+                return xmlString;
+            }
+
             string longestString = string.Empty;
             int longestStringLength = 0;
+                        
+            xmlString = Regex.Replace(xmlString, @"\t|\n|\r|\s+", "");
 
             Regex rx = new Regex(@"(?<=\>)(.*?)(?=\<)");
 
@@ -66,6 +75,12 @@ namespace ConvertBase64ToFile
                     longestString = match.Value;
                     longestStringLength = match.Value.Length;
                 }
+            }
+
+            if (string.IsNullOrWhiteSpace(xmlString))
+            {
+                //If we reach here then input sting is not xml and therefore returning input string
+                return xmlString;
             }
 
             return longestString;
@@ -91,23 +106,47 @@ namespace ConvertBase64ToFile
             string fileName = string.Empty;
             string fileType = string.Empty;
             string filePath = string.Empty;
-
+            string selectedTab = string.Empty;
+            
             txtFileName.Invoke(new Action(() => {
                 fileName = txtFileName.Text;
                 fileType = comFileType.Text.ToLower();
                 filePath = txtFilePath.Text;
+                selectedTab = tabBase64.SelectedTab.Text;
             }));
 
-            if (string.IsNullOrEmpty(filePath))
+            switch (selectedTab)
             {
-                ShowErrorMessage("Please select a valid file");
-                return;
-            }
+                case "File":
 
-            if (!File.Exists(filePath))
-            {
-                ShowErrorMessage("Invalid file path:  " + filePath);
-                return;
+                    if (string.IsNullOrEmpty(filePath))
+                    {
+                        ShowErrorMessage("Please select a valid file");
+                        return;
+                    }
+
+                    if (!File.Exists(filePath))
+                    {
+                        ShowErrorMessage("Invalid file path:  " + filePath);
+                        return;
+                    }
+
+                    Content = File.ReadAllText(filePath);
+                    txtBase64Text.Invoke(new Action(() => {txtBase64Text.Text = string.Empty;}));
+                    
+
+                    break;
+                case "Text":
+                    
+                    if (string.IsNullOrEmpty(filePath))
+                    {
+                        filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    }
+
+                    break;
+                default:
+                    ShowErrorMessage("Unknown tab selected");
+                    return;
             }
 
             if (string.IsNullOrEmpty(fileName))
@@ -121,14 +160,8 @@ namespace ConvertBase64ToFile
                 fileName = String.Format("{0}.{1}", fileName, fileType);
             }
             
-            string fileText = File.ReadAllText(filePath);
-            string base64String = GetLongestMatchingString(fileText);
-
-            if (string.IsNullOrWhiteSpace(base64String))
-            {
-                base64String = fileText;
-            }
-
+            string base64String = GetLongestMatchingString(Content);
+            
             string saveFilePath = Path.GetDirectoryName(filePath) + "\\" + fileName;
             saveFilePath = saveFilePath.Replace("\\\\","\\");
 
@@ -160,6 +193,7 @@ namespace ConvertBase64ToFile
             if (FileList.Length > 0)
             {
                 SetFilePath(FileList[0]);
+                tabBase64.SelectedIndex = 0;
             }
         }
 
@@ -169,6 +203,19 @@ namespace ConvertBase64ToFile
                 e.Effect = DragDropEffects.All;
             else
                 e.Effect = DragDropEffects.None;
+        }
+
+        private void btnPaste_Click(object sender, EventArgs e)
+        {
+            Content = Clipboard.GetText();
+            if (Content.Length > 500)
+            {
+                txtBase64Text.Text = "-- Long content copied to memory --";
+            }
+            else
+            {
+                txtBase64Text.Text = Content.Trim();
+            }
         }
     }
 }

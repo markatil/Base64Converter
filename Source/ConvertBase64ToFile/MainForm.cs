@@ -77,7 +77,7 @@ namespace ConvertBase64ToFile
                 }
             }
 
-            if (string.IsNullOrWhiteSpace(xmlString))
+            if (string.IsNullOrWhiteSpace(longestString))
             {
                 //If we reach here then input sting is not xml and therefore returning input string
                 return xmlString;

@@ -1,8 +1,0 @@
-D:\Workarea\ConvertBase64ToFile\ConvertBase64ToFile\bin\Release\ConvertBase64ToFile.exe.config
-D:\Workarea\ConvertBase64ToFile\ConvertBase64ToFile\bin\Release\ConvertBase64ToFile.exe
-D:\Workarea\ConvertBase64ToFile\ConvertBase64ToFile\bin\Release\ConvertBase64ToFile.pdb
-D:\Workarea\ConvertBase64ToFile\ConvertBase64ToFile\obj\Release\ConvertBase64ToFile.MainForm.resources
-D:\Workarea\ConvertBase64ToFile\ConvertBase64ToFile\obj\Release\ConvertBase64ToFile.Properties.Resources.resources
-D:\Workarea\ConvertBase64ToFile\ConvertBase64ToFile\obj\Release\ConvertBase64ToFile.csproj.GenerateResource.Cache
-D:\Workarea\ConvertBase64ToFile\ConvertBase64ToFile\obj\Release\ConvertBase64ToFile.exe
-D:\Workarea\ConvertBase64ToFile\ConvertBase64ToFile\obj\Release\ConvertBase64ToFile.pdb

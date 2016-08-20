@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConvertBase64ToFile
 {
     public partial class MainForm : Form
     {
-        private string Content { get; set; }
+        string Content { get; set; }
+        Util util = new Util();
+        Util.ConvertTo convertTo;
 
         public MainForm()
         {
@@ -24,9 +20,44 @@ namespace ConvertBase64ToFile
         private void MainForm_Load(object sender, EventArgs e)
         {
             comFileType.SelectedIndex = 0;
+            convertTo = Util.ConvertTo.File;
+        }
+        
+        private void tabMain_Selected(object sender, TabControlEventArgs e)
+        {
+            switch (tabMain.SelectedTab.Name)
+            {
+                case "tConvertToFile":
+                    convertTo = Util.ConvertTo.File;
+                    break;
+                case "tConvertToBase64":
+                    convertTo = Util.ConvertTo.Base64;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        private void IsLoading(bool isLoading)
+        {
+            picFileLoading.Invoke(new Action(() => { picFileLoading.Visible = isLoading; }));
+            panelControls.Invoke(new Action(() => { panelControls.Enabled = !isLoading; }));
+            btnGenerateFile.Invoke(new Action(() => { btnGenerateFile.Enabled = !isLoading; }));
         }
 
-        private void btnSelectFile_Click(object sender, EventArgs e)
+        private void ShowErrorMessage(string text)
+        {
+            IsLoading(false);
+            MessageBox.Show(text, "Error", MessageBoxButtons.OK,  MessageBoxIcon.Error);
+        }
+
+        private void ShowInformationMessage(string text)
+        {
+            IsLoading(false);
+            MessageBox.Show(text, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnSelectBase64File_Click(object sender, EventArgs e)
         {
             if (ofdFile.ShowDialog() == DialogResult.OK)
             {
@@ -36,88 +67,76 @@ namespace ConvertBase64ToFile
 
         private void SetFilePath(string filePath)
         {
-            if (!string.IsNullOrWhiteSpace(filePath))
+            if (string.IsNullOrWhiteSpace(filePath)) return;
+
+            switch (convertTo)
             {
-                txtFilePath.Text = filePath;
-                txtFileName.Text = Path.GetFileNameWithoutExtension(filePath);
-                string fileText = File.ReadAllText(filePath);
-                if (fileText.IndexOf(@"""zip""", StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    comFileType.SelectedItem = "Zip";
-                }
+                case Util.ConvertTo.File:
+                    txtBase64FilePath.Text = filePath;
+                    txtFileName.Text = Path.GetFileNameWithoutExtension(filePath);
+                    tabBase64.SelectedIndex = 0;
+                    break;
+                case Util.ConvertTo.Base64:
+                    txtFilePath.Text = filePath;
+                    break;
+                default:
+                    break;
             }
         }
 
-        private void btnGenerate_Click(object sender, EventArgs e)
-        {            
+        private void btnSelectFile_Click(object sender, EventArgs e)
+        {
+            if (ofdFile.ShowDialog() == DialogResult.OK)
+            {
+                txtFilePath.Text = ofdFile.FileName;
+            }
+        }
+
+        private void btnGenerateFile_Click(object sender, EventArgs e)
+        {
+            convertTo = Util.ConvertTo.File;
+            bgWorker.RunWorkerAsync();
+        }
+        
+        private void btnGenerateBase64_Click(object sender, EventArgs e)
+        {
+            convertTo = Util.ConvertTo.Base64;
             bgWorker.RunWorkerAsync();
         }
 
-
-        private string GetLongestMatchingString(string xmlString)
-        {
-            if (string.IsNullOrWhiteSpace(xmlString))
-            {
-                return xmlString;
-            }
-
-            string longestString = string.Empty;
-            int longestStringLength = 0;
-                        
-            xmlString = Regex.Replace(xmlString, @"\t|\n|\r|\s+", "");
-
-            Regex rx = new Regex(@"(?<=\>)(.*?)(?=\<)");
-
-            foreach (Match match in rx.Matches(xmlString))
-            {
-                if (match.Value.Length > longestStringLength)
-                {
-                    longestString = match.Value;
-                    longestStringLength = match.Value.Length;
-                }
-            }
-
-            if (string.IsNullOrWhiteSpace(longestString))
-            {
-                //If we reach here then input sting is not xml and therefore returning input string
-                return xmlString;
-            }
-
-            return longestString;
-
-        }
-
-        private void IsLoading(bool isLoading)
-        {
-            picLoading.Invoke(new Action(() => { picLoading.Visible = isLoading; }));
-            panelControls.Invoke(new Action(() => { panelControls.Enabled = !isLoading; }));
-            btnGenerate.Invoke(new Action(() => { btnGenerate.Enabled = !isLoading; }));
-        }
-
-        private void ShowErrorMessage(string text)
-        {
-            IsLoading(false);
-            MessageBox.Show(text, "Error", MessageBoxButtons.OK,  MessageBoxIcon.Error);
-        }
-
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            switch (convertTo)
+            {
+                case Util.ConvertTo.File:
+                    ConverstionToFile();
+                    break;
+                case Util.ConvertTo.Base64:
+                    ConversionToBase64();
+                    break;
+                default:
+                    break;
+            }            
+        }
+                
+        void ConverstionToFile()
         {
             IsLoading(true);
             string fileName = string.Empty;
             string fileType = string.Empty;
             string filePath = string.Empty;
             string selectedTab = string.Empty;
-            
-            txtFileName.Invoke(new Action(() => {
+
+            Invoke((Action)(() => {
                 fileName = txtFileName.Text;
                 fileType = comFileType.Text.ToLower();
-                filePath = txtFilePath.Text;
-                selectedTab = tabBase64.SelectedTab.Text;
+                filePath = txtBase64FilePath.Text;
+                selectedTab = tabBase64.SelectedTab.Name;
             }));
 
             switch (selectedTab)
             {
-                case "File":
+                case "tFile":
 
                     if (string.IsNullOrEmpty(filePath))
                     {
@@ -132,12 +151,13 @@ namespace ConvertBase64ToFile
                     }
 
                     Content = File.ReadAllText(filePath);
-                    txtBase64Text.Invoke(new Action(() => {txtBase64Text.Text = string.Empty;}));
                     
+                    Invoke((Action)(() => { txtBase64Text.Text = string.Empty; }));
+
 
                     break;
-                case "Text":
-                    
+                case "tText":
+
                     if (string.IsNullOrEmpty(filePath))
                     {
                         filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -148,7 +168,7 @@ namespace ConvertBase64ToFile
                     ShowErrorMessage("Unknown tab selected");
                     return;
             }
-
+            
             if (string.IsNullOrEmpty(fileName))
             {
                 ShowErrorMessage("Please enter a file name");
@@ -159,11 +179,11 @@ namespace ConvertBase64ToFile
             {
                 fileName = String.Format("{0}.{1}", fileName, fileType);
             }
-            
-            string base64String = GetLongestMatchingString(Content);
-            
+
+            string base64String = util.GetBase64String(Content);
+
             string saveFilePath = Path.GetDirectoryName(filePath) + "\\" + fileName;
-            saveFilePath = saveFilePath.Replace("\\\\","\\");
+            saveFilePath = saveFilePath.Replace("\\\\", "\\");
 
             if (string.IsNullOrEmpty(base64String))
             {
@@ -173,28 +193,56 @@ namespace ConvertBase64ToFile
 
             try
             {
-                File.WriteAllBytes(saveFilePath, Convert.FromBase64String(base64String));
-            }catch(Exception ex)
+                util.ConvertBase64ToFile(saveFilePath, base64String);
+                Process.Start(Path.GetDirectoryName(saveFilePath)); //Open folder
+            }
+            catch (Exception ex)
             {
                 ShowErrorMessage(String.Format("Error Message: {0}", ex.Message));
                 return;
             }
 
-            
-
             txtGeneratedFilePath.Invoke(new Action(() => { txtGeneratedFilePath.Text = saveFilePath; }));
-            
+
             IsLoading(false);
         }
 
-        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        void ConversionToBase64()
         {
-            string[] FileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (FileList.Length > 0)
+            string filePath = string.Empty;
+            Invoke((Action)(() => { filePath = txtFilePath.Text; }));
+
+            if (string.IsNullOrEmpty(filePath))
             {
-                SetFilePath(FileList[0]);
-                tabBase64.SelectedIndex = 0;
+                ShowErrorMessage("Please select a valid file");
+                return;
             }
+
+            if (!File.Exists(filePath))
+            {
+                ShowErrorMessage("Invalid file path:  " + filePath);
+                return;
+            }
+
+            try
+            {
+                string base64 = util.ConvertFileToBase64(filePath);
+
+                if (string.IsNullOrEmpty(base64))
+                {
+                    ShowErrorMessage("Oops ... Some thing went wrog");
+                }
+
+                Invoke((Action)(() => { Clipboard.SetText(base64); }));
+            }
+            catch(Exception ex)
+            {
+                ShowErrorMessage(String.Format("Error Message: {0}", ex.Message));
+                return;
+            }
+
+            ShowInformationMessage("Base64 message copied to clipboard");
+
         }
 
         private void MainForm_DragEnter(object sender, DragEventArgs e)
@@ -204,6 +252,15 @@ namespace ConvertBase64ToFile
             else
                 e.Effect = DragDropEffects.None;
         }
+
+        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] FileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (FileList.Length > 0)
+            {
+                SetFilePath(FileList[0]);
+            }
+        }        
 
         private void btnPaste_Click(object sender, EventArgs e)
         {
@@ -217,5 +274,6 @@ namespace ConvertBase64ToFile
                 txtBase64Text.Text = Content.Trim();
             }
         }
+
     }
 }

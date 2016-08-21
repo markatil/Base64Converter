@@ -6,7 +6,7 @@ Base64Converter is a windows tool for converting base64 to a file. This tool can
 
 ### How do I get started?
 Run the Base64Converter.exe file from App folder which displays below windows form.
-![alt tag](https://cloud.githubusercontent.com/assets/6698586/16716350/cc43260e-46f1-11e6-8804-bd45705ff954.png)
+![alt tag](https://cloud.githubusercontent.com/assets/6698586/17839965/17af05ac-67f1-11e6-93ef-431292d3f5b9.jpg)
 
 1) Base 64 String path: Select the file which contains the base64 string 
 2) Save as file name: Name of the converted file, select the file type (note if the file type is not available in dropdown simply type the file name with extension)

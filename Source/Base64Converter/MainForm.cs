@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
-namespace ConvertBase64ToFile
+namespace Base64Converter
 {
     public partial class MainForm : Form
     {

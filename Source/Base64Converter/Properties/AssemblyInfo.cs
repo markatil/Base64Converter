@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ConvertBase64ToFile")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Base64 Converter")]
+[assembly: AssemblyDescription("Converts file to base64 and base64 to file")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jemin Pro")]
-[assembly: AssemblyProduct("ConvertBase64ToFile")]
+[assembly: AssemblyProduct("Base64 Converter")]
 [assembly: AssemblyCopyright("Copyright © Jemin Pro 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

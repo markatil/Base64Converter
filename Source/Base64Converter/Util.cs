@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ConvertBase64ToFile
+namespace Base64Converter
 {
     internal class Util
     {

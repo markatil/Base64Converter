@@ -7,8 +7,8 @@
     <ProjectGuid>{CCED0EB5-39F7-4BFA-88BA-C58EFDF2BB2D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConvertBase64ToFile</RootNamespace>
-    <AssemblyName>ConvertBase64ToFile</AssemblyName>
+    <RootNamespace>Base64Converter</RootNamespace>
+    <AssemblyName>Base64Converter</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>arrows.ico</ApplicationIcon>
+    <ApplicationIcon>MainIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <Win32Resource>
@@ -114,7 +114,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="arrows.ico" />
+    <Content Include="MainIcon.ico" />
     <None Include="Resources\cog.png" />
     <None Include="Resources\loading.gif" />
   </ItemGroup>

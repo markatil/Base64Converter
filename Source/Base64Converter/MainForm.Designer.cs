@@ -1,4 +1,4 @@
-﻿namespace ConvertBase64ToFile
+﻿namespace Base64Converter
 {
     partial class MainForm
     {
@@ -41,11 +41,11 @@
             this.txtGeneratedFilePath = new System.Windows.Forms.TextBox();
             this.panelControls = new System.Windows.Forms.Panel();
             this.tabBase64 = new System.Windows.Forms.TabControl();
-            this.tFile = new System.Windows.Forms.TabPage();
             this.tText = new System.Windows.Forms.TabPage();
             this.btnPaste = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBase64Text = new System.Windows.Forms.TextBox();
+            this.tFile = new System.Windows.Forms.TabPage();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tConvertToFile = new System.Windows.Forms.TabPage();
@@ -60,8 +60,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panelControls.SuspendLayout();
             this.tabBase64.SuspendLayout();
-            this.tFile.SuspendLayout();
             this.tText.SuspendLayout();
+            this.tFile.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tConvertToFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFileLoading)).BeginInit();
@@ -199,19 +199,6 @@
             this.tabBase64.Size = new System.Drawing.Size(486, 77);
             this.tabBase64.TabIndex = 11;
             // 
-            // tFile
-            // 
-            this.tFile.Controls.Add(this.txtBase64FilePath);
-            this.tFile.Controls.Add(this.btnSelectBase64File);
-            this.tFile.Controls.Add(this.label1);
-            this.tFile.Location = new System.Drawing.Point(4, 22);
-            this.tFile.Name = "tFile";
-            this.tFile.Padding = new System.Windows.Forms.Padding(3);
-            this.tFile.Size = new System.Drawing.Size(478, 51);
-            this.tFile.TabIndex = 0;
-            this.tFile.Text = "Select Base64 Text File";
-            this.tFile.UseVisualStyleBackColor = true;
-            // 
             // tText
             // 
             this.tText.Controls.Add(this.btnPaste);
@@ -255,6 +242,19 @@
             this.txtBase64Text.Size = new System.Drawing.Size(300, 20);
             this.txtBase64Text.TabIndex = 0;
             // 
+            // tFile
+            // 
+            this.tFile.Controls.Add(this.txtBase64FilePath);
+            this.tFile.Controls.Add(this.btnSelectBase64File);
+            this.tFile.Controls.Add(this.label1);
+            this.tFile.Location = new System.Drawing.Point(4, 22);
+            this.tFile.Name = "tFile";
+            this.tFile.Padding = new System.Windows.Forms.Padding(3);
+            this.tFile.Size = new System.Drawing.Size(478, 51);
+            this.tFile.TabIndex = 0;
+            this.tFile.Text = "Select Base64 Text File";
+            this.tFile.UseVisualStyleBackColor = true;
+            // 
             // bgWorker
             // 
             this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
@@ -290,7 +290,7 @@
             this.btnConfigure.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
             this.btnConfigure.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.btnConfigure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfigure.Image = global::ConvertBase64ToFile.Properties.Resources.cog;
+            this.btnConfigure.Image = global::Base64Converter.Properties.Resources.cog;
             this.btnConfigure.Location = new System.Drawing.Point(6, 194);
             this.btnConfigure.Name = "btnConfigure";
             this.btnConfigure.Size = new System.Drawing.Size(25, 25);
@@ -301,7 +301,7 @@
             // picFileLoading
             // 
             this.picFileLoading.BackColor = System.Drawing.Color.Transparent;
-            this.picFileLoading.Image = global::ConvertBase64ToFile.Properties.Resources.loading;
+            this.picFileLoading.Image = global::Base64Converter.Properties.Resources.loading;
             this.picFileLoading.Location = new System.Drawing.Point(331, 190);
             this.picFileLoading.Margin = new System.Windows.Forms.Padding(2);
             this.picFileLoading.Name = "picFileLoading";
@@ -326,7 +326,7 @@
             // picBase64Loading
             // 
             this.picBase64Loading.BackColor = System.Drawing.Color.Transparent;
-            this.picBase64Loading.Image = global::ConvertBase64ToFile.Properties.Resources.loading;
+            this.picBase64Loading.Image = global::Base64Converter.Properties.Resources.loading;
             this.picBase64Loading.Location = new System.Drawing.Point(286, 193);
             this.picBase64Loading.Margin = new System.Windows.Forms.Padding(2);
             this.picBase64Loading.Name = "picBase64Loading";
@@ -408,17 +408,17 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Convert Base64 To File";
+            this.Text = "Base64 Converter";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             this.panelControls.ResumeLayout(false);
             this.panelControls.PerformLayout();
             this.tabBase64.ResumeLayout(false);
-            this.tFile.ResumeLayout(false);
-            this.tFile.PerformLayout();
             this.tText.ResumeLayout(false);
             this.tText.PerformLayout();
+            this.tFile.ResumeLayout(false);
+            this.tFile.PerformLayout();
             this.tabMain.ResumeLayout(false);
             this.tConvertToFile.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picFileLoading)).EndInit();

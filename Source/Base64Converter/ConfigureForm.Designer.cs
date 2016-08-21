@@ -1,4 +1,4 @@
-﻿namespace ConvertBase64ToFile
+﻿namespace Base64Converter
 {
     partial class ConfigureForm
     {

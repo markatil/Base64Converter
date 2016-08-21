@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ConvertBase64ToFile
+namespace Base64Converter
 {
     static class Program
     {

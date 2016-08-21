@@ -1,11 +1,11 @@
-#ConvertBase64ToFile
+#Base64Converter
 Windows tool for converting base64 to a file or file to base64
 
-### What is ConvertBase64ToFile?
-ConvertBase64ToFile is a windows tool for converting base64 to a file. This tool can handle very large file.
+### What is Base64Converter?
+Base64Converter is a windows tool for converting base64 to a file. This tool can handle very large file.
 
 ### How do I get started?
-Run the ConvertBase64ToFile.exe file from App folder which displays below windows form.
+Run the Base64Converter.exe file from App folder which displays below windows form.
 ![alt tag](https://cloud.githubusercontent.com/assets/6698586/16716350/cc43260e-46f1-11e6-8804-bd45705ff954.png)
 
 1) Base 64 String path: Select the file which contains the base64 string 

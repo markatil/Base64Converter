@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ConvertBase64ToFile")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TM Group (UK) Limited")]
+[assembly: AssemblyCompany("Jemin Pro")]
 [assembly: AssemblyProduct("ConvertBase64ToFile")]
-[assembly: AssemblyCopyright("Copyright © TM Group (UK) Limited 2016")]
+[assembly: AssemblyCopyright("Copyright © Jemin Pro 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

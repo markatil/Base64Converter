@@ -49,14 +49,15 @@
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tConvertToFile = new System.Windows.Forms.TabPage();
+            this.btnConfigure = new System.Windows.Forms.Button();
             this.picFileLoading = new System.Windows.Forms.PictureBox();
             this.tConvertToBase64 = new System.Windows.Forms.TabPage();
+            this.picBase64Loading = new System.Windows.Forms.PictureBox();
             this.btnGenerateBase64 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.btnSelectFile = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.picBase64Loading = new System.Windows.Forms.PictureBox();
             this.panelControls.SuspendLayout();
             this.tabBase64.SuspendLayout();
             this.tFile.SuspendLayout();
@@ -65,8 +66,8 @@
             this.tConvertToFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFileLoading)).BeginInit();
             this.tConvertToBase64.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBase64Loading)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -137,11 +138,6 @@
             this.comFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comFileType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comFileType.FormattingEnabled = true;
-            this.comFileType.Items.AddRange(new object[] {
-            "pdf",
-            "zip",
-            "gif",
-            "jpg"});
             this.comFileType.Location = new System.Drawing.Point(360, 93);
             this.comFileType.Margin = new System.Windows.Forms.Padding(2);
             this.comFileType.Name = "comFileType";
@@ -195,8 +191,8 @@
             // 
             // tabBase64
             // 
-            this.tabBase64.Controls.Add(this.tFile);
             this.tabBase64.Controls.Add(this.tText);
+            this.tabBase64.Controls.Add(this.tFile);
             this.tabBase64.Location = new System.Drawing.Point(3, 3);
             this.tabBase64.Name = "tabBase64";
             this.tabBase64.SelectedIndex = 0;
@@ -276,6 +272,7 @@
             // 
             // tConvertToFile
             // 
+            this.tConvertToFile.Controls.Add(this.btnConfigure);
             this.tConvertToFile.Controls.Add(this.panelControls);
             this.tConvertToFile.Controls.Add(this.picFileLoading);
             this.tConvertToFile.Controls.Add(this.btnGenerateFile);
@@ -286,6 +283,20 @@
             this.tConvertToFile.TabIndex = 0;
             this.tConvertToFile.Text = "Convert to File";
             this.tConvertToFile.UseVisualStyleBackColor = true;
+            // 
+            // btnConfigure
+            // 
+            this.btnConfigure.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnConfigure.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnConfigure.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.btnConfigure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfigure.Image = global::ConvertBase64ToFile.Properties.Resources.cog;
+            this.btnConfigure.Location = new System.Drawing.Point(6, 194);
+            this.btnConfigure.Name = "btnConfigure";
+            this.btnConfigure.Size = new System.Drawing.Size(25, 25);
+            this.btnConfigure.TabIndex = 3;
+            this.btnConfigure.UseVisualStyleBackColor = true;
+            this.btnConfigure.Click += new System.EventHandler(this.btnConfigure_Click);
             // 
             // picFileLoading
             // 
@@ -312,6 +323,18 @@
             this.tConvertToBase64.Text = "Convert to Base64";
             this.tConvertToBase64.UseVisualStyleBackColor = true;
             // 
+            // picBase64Loading
+            // 
+            this.picBase64Loading.BackColor = System.Drawing.Color.Transparent;
+            this.picBase64Loading.Image = global::ConvertBase64ToFile.Properties.Resources.loading;
+            this.picBase64Loading.Location = new System.Drawing.Point(286, 193);
+            this.picBase64Loading.Margin = new System.Windows.Forms.Padding(2);
+            this.picBase64Loading.Name = "picBase64Loading";
+            this.picBase64Loading.Size = new System.Drawing.Size(30, 30);
+            this.picBase64Loading.TabIndex = 10;
+            this.picBase64Loading.TabStop = false;
+            this.picBase64Loading.Visible = false;
+            // 
             // btnGenerateBase64
             // 
             this.btnGenerateBase64.BackColor = System.Drawing.Color.CadetBlue;
@@ -329,12 +352,13 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.txtFilePath);
             this.panel1.Controls.Add(this.btnSelectFile);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(6, 17);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(484, 51);
+            this.panel1.Size = new System.Drawing.Size(484, 58);
             this.panel1.TabIndex = 6;
             // 
             // txtFilePath
@@ -370,18 +394,6 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "File path";
             // 
-            // picBase64Loading
-            // 
-            this.picBase64Loading.BackColor = System.Drawing.Color.Transparent;
-            this.picBase64Loading.Image = global::ConvertBase64ToFile.Properties.Resources.loading;
-            this.picBase64Loading.Location = new System.Drawing.Point(286, 193);
-            this.picBase64Loading.Margin = new System.Windows.Forms.Padding(2);
-            this.picBase64Loading.Name = "picBase64Loading";
-            this.picBase64Loading.Size = new System.Drawing.Size(30, 30);
-            this.picBase64Loading.TabIndex = 10;
-            this.picBase64Loading.TabStop = false;
-            this.picBase64Loading.Visible = false;
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -395,6 +407,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Convert Base64 To File";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
@@ -410,9 +423,9 @@
             this.tConvertToFile.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picFileLoading)).EndInit();
             this.tConvertToBase64.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picBase64Loading)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBase64Loading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -447,6 +460,7 @@
         private System.Windows.Forms.Button btnSelectFile;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox picBase64Loading;
+        private System.Windows.Forms.Button btnConfigure;
     }
 }
 

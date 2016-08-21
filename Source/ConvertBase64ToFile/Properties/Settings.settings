@@ -1,7 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ConvertBase64ToFile.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DefaultFolderToSave" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RandomFileNameIfNotSpecified" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FileTypes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pdf, zip, gif, jpg</Value>
+    </Setting>
+    <Setting Name="OpenGeneratedFileType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Folder</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

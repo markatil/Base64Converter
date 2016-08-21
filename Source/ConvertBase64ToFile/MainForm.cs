@@ -18,11 +18,30 @@ namespace ConvertBase64ToFile
         }
         
         private void MainForm_Load(object sender, EventArgs e)
-        {
-            comFileType.SelectedIndex = 0;
+        {            
             convertTo = Util.ConvertTo.File;
+            BindFileTypes();
         }
         
+        void BindFileTypes()
+        {
+            var fileTypeList = Properties.Settings.Default.FileTypes.Split(',');
+            comFileType.Items.Clear();
+
+            foreach (string val in fileTypeList)
+            {
+                if (!string.IsNullOrWhiteSpace(val))
+                {
+                    comFileType.Items.Add(val.ToString().Trim());
+                }
+            }
+
+            if(comFileType.Items.Count > 0)
+            {
+                comFileType.SelectedIndex = 0;
+            }
+        }
+
         private void tabMain_Selected(object sender, TabControlEventArgs e)
         {
             switch (tabMain.SelectedTab.Name)
@@ -74,7 +93,7 @@ namespace ConvertBase64ToFile
                 case Util.ConvertTo.File:
                     txtBase64FilePath.Text = filePath;
                     txtFileName.Text = Path.GetFileNameWithoutExtension(filePath);
-                    tabBase64.SelectedIndex = 0;
+                    tabBase64.SelectTab("tFile");
                     break;
                 case Util.ConvertTo.Base64:
                     txtFilePath.Text = filePath;
@@ -109,7 +128,7 @@ namespace ConvertBase64ToFile
             switch (convertTo)
             {
                 case Util.ConvertTo.File:
-                    ConverstionToFile();
+                    ConvertToFile();
                     break;
                 case Util.ConvertTo.Base64:
                     ConversionToBase64();
@@ -119,14 +138,14 @@ namespace ConvertBase64ToFile
             }            
         }
                 
-        void ConverstionToFile()
+        void ConvertToFile()
         {
             IsLoading(true);
             string fileName = string.Empty;
             string fileType = string.Empty;
             string filePath = string.Empty;
             string selectedTab = string.Empty;
-
+            
             Invoke((Action)(() => {
                 fileName = txtFileName.Text;
                 fileType = comFileType.Text.ToLower();
@@ -154,21 +173,21 @@ namespace ConvertBase64ToFile
                     
                     Invoke((Action)(() => { txtBase64Text.Text = string.Empty; }));
 
-
                     break;
-                case "tText":
-
-                    if (string.IsNullOrEmpty(filePath))
-                    {
-                        filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    }
-
+                case "tText":                    
                     break;
                 default:
                     ShowErrorMessage("Unknown tab selected");
                     return;
             }
-            
+
+            if(string.IsNullOrEmpty(fileName) && Properties.Settings.Default.RandomFileNameIfNotSpecified)
+            {
+                TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+                int secondsSinceEpoch = (int)t.TotalSeconds;
+                fileName = String.Format("RandomFile_{0}", secondsSinceEpoch);
+            }
+
             if (string.IsNullOrEmpty(fileName))
             {
                 ShowErrorMessage("Please enter a file name");
@@ -181,32 +200,66 @@ namespace ConvertBase64ToFile
             }
 
             string base64String = util.GetBase64String(Content);
-
-            string saveFilePath = Path.GetDirectoryName(filePath) + "\\" + fileName;
-            saveFilePath = saveFilePath.Replace("\\\\", "\\");
-
+            
             if (string.IsNullOrEmpty(base64String))
             {
                 ShowErrorMessage("No valid base64String found");
                 return;
             }
-
+                        
             try
             {
+                string saveFolderPath = SaveFolderPath(filePath);
+
+                string saveFilePath = saveFolderPath + "\\" + fileName;
+                saveFilePath = saveFilePath.Replace("\\\\", "\\");
+
                 util.ConvertBase64ToFile(saveFilePath, base64String);
-                Process.Start(Path.GetDirectoryName(saveFilePath)); //Open folder
+
+                var openGeneratedFileType = (Util.OpenGeneratedFileType)Enum.Parse(typeof(Util.OpenGeneratedFileType), Properties.Settings.Default.OpenGeneratedFileType);
+
+                switch (openGeneratedFileType)
+                {
+                    case Util.OpenGeneratedFileType.Folder:
+                        Process.Start(saveFolderPath);
+                        break;
+                    case Util.OpenGeneratedFileType.File:
+                        Process.Start(saveFilePath);
+                        break;                    
+                    default:
+                        break;
+                }
+
+                Invoke((Action)(() => { txtGeneratedFilePath.Text = saveFilePath; }));
             }
             catch (Exception ex)
             {
                 ShowErrorMessage(String.Format("Error Message: {0}", ex.Message));
                 return;
             }
-
-            txtGeneratedFilePath.Invoke(new Action(() => { txtGeneratedFilePath.Text = saveFilePath; }));
-
+            
             IsLoading(false);
         }
 
+
+        string SaveFolderPath(string base64FilePath)
+        {
+            string saveFolderPath = Properties.Settings.Default.DefaultFolderToSave;
+
+            if (!Directory.Exists(saveFolderPath) && !String.IsNullOrWhiteSpace(base64FilePath))
+            {
+                if (Directory.Exists(Path.GetDirectoryName(base64FilePath)))
+                {
+                    saveFolderPath = Path.GetDirectoryName(base64FilePath);
+                }
+            }
+            else if (!Directory.Exists(saveFolderPath))
+            {
+                saveFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            }
+
+            return saveFolderPath;
+        }
         void ConversionToBase64()
         {
             string filePath = string.Empty;
@@ -275,5 +328,15 @@ namespace ConvertBase64ToFile
             }
         }
 
+        private void btnConfigure_Click(object sender, EventArgs e)
+        {
+            using (var configureForm = new ConfigureForm())
+            {
+                if(configureForm.ShowDialog() == DialogResult.OK)
+                {
+                    BindFileTypes();
+                }
+            }
+        }
     }
 }

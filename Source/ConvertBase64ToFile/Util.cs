@@ -11,6 +11,7 @@ namespace ConvertBase64ToFile
     internal class Util
     {
         internal enum ConvertTo { File, Base64 }
+        internal enum OpenGeneratedFileType { Folder, File, None}
 
         internal string GetBase64String(string xmlString)
         {

@@ -76,7 +76,7 @@
             this.label1.Location = new System.Drawing.Point(5, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.Size = new System.Drawing.Size(102, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Base64 file path";
             // 
@@ -85,7 +85,7 @@
             this.txtBase64FilePath.Location = new System.Drawing.Point(116, 18);
             this.txtBase64FilePath.Margin = new System.Windows.Forms.Padding(2);
             this.txtBase64FilePath.Name = "txtBase64FilePath";
-            this.txtBase64FilePath.Size = new System.Drawing.Size(305, 20);
+            this.txtBase64FilePath.Size = new System.Drawing.Size(305, 22);
             this.txtBase64FilePath.TabIndex = 1;
             // 
             // ofdFile
@@ -101,7 +101,7 @@
             this.btnSelectBase64File.Location = new System.Drawing.Point(422, 18);
             this.btnSelectBase64File.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectBase64File.Name = "btnSelectBase64File";
-            this.btnSelectBase64File.Size = new System.Drawing.Size(25, 19);
+            this.btnSelectBase64File.Size = new System.Drawing.Size(37, 22);
             this.btnSelectBase64File.TabIndex = 2;
             this.btnSelectBase64File.Text = "...";
             this.btnSelectBase64File.UseVisualStyleBackColor = false;
@@ -128,7 +128,7 @@
             this.label2.Location = new System.Drawing.Point(11, 93);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.Size = new System.Drawing.Size(114, 16);
             this.label2.TabIndex = 4;
             this.label2.Text = "Save as file name";
             // 
@@ -141,7 +141,7 @@
             this.comFileType.Location = new System.Drawing.Point(360, 93);
             this.comFileType.Margin = new System.Windows.Forms.Padding(2);
             this.comFileType.Name = "comFileType";
-            this.comFileType.Size = new System.Drawing.Size(70, 21);
+            this.comFileType.Size = new System.Drawing.Size(70, 24);
             this.comFileType.TabIndex = 7;
             // 
             // txtFileName
@@ -149,7 +149,7 @@
             this.txtFileName.Location = new System.Drawing.Point(126, 93);
             this.txtFileName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(230, 20);
+            this.txtFileName.Size = new System.Drawing.Size(230, 22);
             this.txtFileName.TabIndex = 6;
             // 
             // label3
@@ -158,7 +158,7 @@
             this.label3.Location = new System.Drawing.Point(11, 131);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 13);
+            this.label3.Size = new System.Drawing.Size(126, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "Generated File Path";
             // 
@@ -167,12 +167,12 @@
             this.txtGeneratedFilePath.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtGeneratedFilePath.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtGeneratedFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGeneratedFilePath.Location = new System.Drawing.Point(126, 131);
+            this.txtGeneratedFilePath.Location = new System.Drawing.Point(141, 131);
             this.txtGeneratedFilePath.Margin = new System.Windows.Forms.Padding(2);
             this.txtGeneratedFilePath.Multiline = true;
             this.txtGeneratedFilePath.Name = "txtGeneratedFilePath";
             this.txtGeneratedFilePath.ReadOnly = true;
-            this.txtGeneratedFilePath.Size = new System.Drawing.Size(340, 37);
+            this.txtGeneratedFilePath.Size = new System.Drawing.Size(344, 37);
             this.txtGeneratedFilePath.TabIndex = 100;
             // 
             // panelControls
@@ -204,10 +204,10 @@
             this.tText.Controls.Add(this.btnPaste);
             this.tText.Controls.Add(this.label4);
             this.tText.Controls.Add(this.txtBase64Text);
-            this.tText.Location = new System.Drawing.Point(4, 22);
+            this.tText.Location = new System.Drawing.Point(4, 25);
             this.tText.Name = "tText";
             this.tText.Padding = new System.Windows.Forms.Padding(3);
-            this.tText.Size = new System.Drawing.Size(478, 51);
+            this.tText.Size = new System.Drawing.Size(478, 48);
             this.tText.TabIndex = 1;
             this.tText.Text = "Paste Base64 Text";
             this.tText.UseVisualStyleBackColor = true;
@@ -215,10 +215,10 @@
             // btnPaste
             // 
             this.btnPaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPaste.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPaste.Location = new System.Drawing.Point(418, 17);
+            this.btnPaste.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPaste.Location = new System.Drawing.Point(421, 18);
             this.btnPaste.Name = "btnPaste";
-            this.btnPaste.Size = new System.Drawing.Size(49, 22);
+            this.btnPaste.Size = new System.Drawing.Size(51, 22);
             this.btnPaste.TabIndex = 2;
             this.btnPaste.Text = "Paste";
             this.btnPaste.UseVisualStyleBackColor = true;
@@ -230,7 +230,7 @@
             this.label4.Location = new System.Drawing.Point(5, 21);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.Size = new System.Drawing.Size(82, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "Base64 Text";
             // 
@@ -239,7 +239,7 @@
             this.txtBase64Text.Location = new System.Drawing.Point(116, 18);
             this.txtBase64Text.Name = "txtBase64Text";
             this.txtBase64Text.ReadOnly = true;
-            this.txtBase64Text.Size = new System.Drawing.Size(300, 20);
+            this.txtBase64Text.Size = new System.Drawing.Size(300, 22);
             this.txtBase64Text.TabIndex = 0;
             // 
             // tFile
@@ -247,10 +247,10 @@
             this.tFile.Controls.Add(this.txtBase64FilePath);
             this.tFile.Controls.Add(this.btnSelectBase64File);
             this.tFile.Controls.Add(this.label1);
-            this.tFile.Location = new System.Drawing.Point(4, 22);
+            this.tFile.Location = new System.Drawing.Point(4, 25);
             this.tFile.Name = "tFile";
             this.tFile.Padding = new System.Windows.Forms.Padding(3);
-            this.tFile.Size = new System.Drawing.Size(478, 51);
+            this.tFile.Size = new System.Drawing.Size(478, 48);
             this.tFile.TabIndex = 0;
             this.tFile.Text = "Select Base64 Text File";
             this.tFile.UseVisualStyleBackColor = true;
@@ -276,10 +276,10 @@
             this.tConvertToFile.Controls.Add(this.panelControls);
             this.tConvertToFile.Controls.Add(this.picFileLoading);
             this.tConvertToFile.Controls.Add(this.btnGenerateFile);
-            this.tConvertToFile.Location = new System.Drawing.Point(4, 22);
+            this.tConvertToFile.Location = new System.Drawing.Point(4, 25);
             this.tConvertToFile.Name = "tConvertToFile";
             this.tConvertToFile.Padding = new System.Windows.Forms.Padding(3);
-            this.tConvertToFile.Size = new System.Drawing.Size(497, 235);
+            this.tConvertToFile.Size = new System.Drawing.Size(497, 232);
             this.tConvertToFile.TabIndex = 0;
             this.tConvertToFile.Text = "Convert to File";
             this.tConvertToFile.UseVisualStyleBackColor = true;
@@ -315,10 +315,10 @@
             this.tConvertToBase64.Controls.Add(this.picBase64Loading);
             this.tConvertToBase64.Controls.Add(this.btnGenerateBase64);
             this.tConvertToBase64.Controls.Add(this.panel1);
-            this.tConvertToBase64.Location = new System.Drawing.Point(4, 22);
+            this.tConvertToBase64.Location = new System.Drawing.Point(4, 25);
             this.tConvertToBase64.Name = "tConvertToBase64";
             this.tConvertToBase64.Padding = new System.Windows.Forms.Padding(3);
-            this.tConvertToBase64.Size = new System.Drawing.Size(497, 235);
+            this.tConvertToBase64.Size = new System.Drawing.Size(497, 232);
             this.tConvertToBase64.TabIndex = 1;
             this.tConvertToBase64.Text = "Convert to Base64";
             this.tConvertToBase64.UseVisualStyleBackColor = true;
@@ -366,7 +366,7 @@
             this.txtFilePath.Location = new System.Drawing.Point(83, 19);
             this.txtFilePath.Margin = new System.Windows.Forms.Padding(2);
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(349, 20);
+            this.txtFilePath.Size = new System.Drawing.Size(349, 22);
             this.txtFilePath.TabIndex = 4;
             // 
             // btnSelectFile
@@ -390,14 +390,14 @@
             this.label5.Location = new System.Drawing.Point(16, 22);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.Size = new System.Drawing.Size(58, 16);
             this.label5.TabIndex = 3;
             this.label5.Text = "File path";
             // 
             // MainForm
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(510, 266);

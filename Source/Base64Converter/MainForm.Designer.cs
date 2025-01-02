@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.txtBase64FilePath = new System.Windows.Forms.TextBox();
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
             this.btnSelectBase64File = new System.Windows.Forms.Button();
             this.btnGenerateFile = new System.Windows.Forms.Button();
@@ -44,7 +43,6 @@
             this.tText = new System.Windows.Forms.TabPage();
             this.btnPaste = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtBase64Text = new System.Windows.Forms.TextBox();
             this.tFile = new System.Windows.Forms.TabPage();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.tabMain = new System.Windows.Forms.TabControl();
@@ -58,6 +56,8 @@
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.btnSelectFile = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtBase64FilePath = new System.Windows.Forms.TextBox();
+            this.txtBase64Text = new System.Windows.Forms.RichTextBox();
             this.panelControls.SuspendLayout();
             this.tabBase64.SuspendLayout();
             this.tText.SuspendLayout();
@@ -80,14 +80,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Base64 file path";
             // 
-            // txtBase64FilePath
-            // 
-            this.txtBase64FilePath.Location = new System.Drawing.Point(116, 18);
-            this.txtBase64FilePath.Margin = new System.Windows.Forms.Padding(2);
-            this.txtBase64FilePath.Name = "txtBase64FilePath";
-            this.txtBase64FilePath.Size = new System.Drawing.Size(305, 22);
-            this.txtBase64FilePath.TabIndex = 1;
-            // 
             // ofdFile
             // 
             this.ofdFile.FileName = "ofdFile";
@@ -98,10 +90,10 @@
             this.btnSelectBase64File.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectBase64File.Font = new System.Drawing.Font("Microsoft Sans Serif", 4F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectBase64File.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSelectBase64File.Location = new System.Drawing.Point(422, 18);
+            this.btnSelectBase64File.Location = new System.Drawing.Point(414, 18);
             this.btnSelectBase64File.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectBase64File.Name = "btnSelectBase64File";
-            this.btnSelectBase64File.Size = new System.Drawing.Size(37, 22);
+            this.btnSelectBase64File.Size = new System.Drawing.Size(51, 22);
             this.btnSelectBase64File.TabIndex = 2;
             this.btnSelectBase64File.Text = "...";
             this.btnSelectBase64File.UseVisualStyleBackColor = false;
@@ -138,7 +130,7 @@
             this.comFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comFileType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comFileType.FormattingEnabled = true;
-            this.comFileType.Location = new System.Drawing.Point(360, 93);
+            this.comFileType.Location = new System.Drawing.Point(347, 93);
             this.comFileType.Margin = new System.Windows.Forms.Padding(2);
             this.comFileType.Name = "comFileType";
             this.comFileType.Size = new System.Drawing.Size(70, 24);
@@ -149,7 +141,7 @@
             this.txtFileName.Location = new System.Drawing.Point(126, 93);
             this.txtFileName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(230, 22);
+            this.txtFileName.Size = new System.Drawing.Size(217, 22);
             this.txtFileName.TabIndex = 6;
             // 
             // label3
@@ -201,9 +193,9 @@
             // 
             // tText
             // 
+            this.tText.Controls.Add(this.txtBase64Text);
             this.tText.Controls.Add(this.btnPaste);
             this.tText.Controls.Add(this.label4);
-            this.tText.Controls.Add(this.txtBase64Text);
             this.tText.Location = new System.Drawing.Point(4, 25);
             this.tText.Name = "tText";
             this.tText.Padding = new System.Windows.Forms.Padding(3);
@@ -216,7 +208,7 @@
             // 
             this.btnPaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaste.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPaste.Location = new System.Drawing.Point(421, 18);
+            this.btnPaste.Location = new System.Drawing.Point(416, 18);
             this.btnPaste.Name = "btnPaste";
             this.btnPaste.Size = new System.Drawing.Size(51, 22);
             this.btnPaste.TabIndex = 2;
@@ -233,14 +225,6 @@
             this.label4.Size = new System.Drawing.Size(82, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "Base64 Text";
-            // 
-            // txtBase64Text
-            // 
-            this.txtBase64Text.Location = new System.Drawing.Point(116, 18);
-            this.txtBase64Text.Name = "txtBase64Text";
-            this.txtBase64Text.ReadOnly = true;
-            this.txtBase64Text.Size = new System.Drawing.Size(300, 22);
-            this.txtBase64Text.TabIndex = 0;
             // 
             // tFile
             // 
@@ -394,6 +378,22 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "File path";
             // 
+            // txtBase64FilePath
+            // 
+            this.txtBase64FilePath.Location = new System.Drawing.Point(119, 18);
+            this.txtBase64FilePath.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBase64FilePath.Name = "txtBase64FilePath";
+            this.txtBase64FilePath.Size = new System.Drawing.Size(291, 22);
+            this.txtBase64FilePath.TabIndex = 1;
+            // 
+            // txtBase64Text
+            // 
+            this.txtBase64Text.Location = new System.Drawing.Point(119, 18);
+            this.txtBase64Text.Name = "txtBase64Text";
+            this.txtBase64Text.Size = new System.Drawing.Size(291, 22);
+            this.txtBase64Text.TabIndex = 3;
+            this.txtBase64Text.Text = "";
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -433,7 +433,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtBase64FilePath;
         private System.Windows.Forms.OpenFileDialog ofdFile;
         private System.Windows.Forms.Button btnSelectBase64File;
         private System.Windows.Forms.Button btnGenerateFile;
@@ -450,7 +449,6 @@
         private System.Windows.Forms.TabPage tText;
         private System.Windows.Forms.Button btnPaste;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtBase64Text;
         private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tConvertToFile;
         private System.Windows.Forms.TabPage tConvertToBase64;
@@ -461,6 +459,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox picBase64Loading;
         private System.Windows.Forms.Button btnConfigure;
+        private System.Windows.Forms.RichTextBox txtBase64Text;
+        private System.Windows.Forms.TextBox txtBase64FilePath;
     }
 }
 

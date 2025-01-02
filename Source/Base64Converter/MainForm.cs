@@ -145,12 +145,14 @@ namespace Base64Converter
             string fileType = string.Empty;
             string filePath = string.Empty;
             string selectedTab = string.Empty;
-            
+            string base64Text = string.Empty;
+
             Invoke((Action)(() => {
                 fileName = txtFileName.Text;
                 fileType = comFileType.Text.ToLower();
                 filePath = txtBase64FilePath.Text;
                 selectedTab = tabBase64.SelectedTab.Name;
+                base64Text = txtBase64Text.Text;
             }));
 
             switch (selectedTab)
@@ -174,7 +176,8 @@ namespace Base64Converter
                     Invoke((Action)(() => { txtBase64Text.Text = string.Empty; }));
 
                     break;
-                case "tText":                    
+                case "tText":
+                    Content = base64Text;
                     break;
                 default:
                     ShowErrorMessage("Unknown tab selected");
@@ -318,14 +321,7 @@ namespace Base64Converter
         private void btnPaste_Click(object sender, EventArgs e)
         {
             Content = Clipboard.GetText();
-            if (Content.Length > 500)
-            {
-                txtBase64Text.Text = "-- Long content copied to memory --";
-            }
-            else
-            {
-                txtBase64Text.Text = Content.Trim();
-            }
+            txtBase64Text.Text = Content.Trim();
         }
 
         private void btnConfigure_Click(object sender, EventArgs e)
